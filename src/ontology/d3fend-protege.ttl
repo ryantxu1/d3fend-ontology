@@ -3304,6 +3304,34 @@ Effective implementation requires identifying any location that could end up con
             owl:onProperty :weakness-of ;
             owl:someValuesFrom :UserInputFunction ] .
 
+:CWE-1037 a owl:Class ;
+    rdfs:label "Processor Optimization Removal or Modification of Security-critical Code" ;
+    rdfs:subClassOf :Weakness,
+        [ a owl:Restriction ;
+            owl:onProperty :weakness-of ;
+            owl:someValuesFrom :CentralProcessingUnit ] .
+
+:CWE-1264 a owl:Class ;
+    rdfs:label "Hardware Logic with Insecure De-Synchronization between Control and Data Channels" ;
+    rdfs:subClassOf :Weakness,
+        [ a owl:Restriction ;
+            owl:onProperty :may-be-weakness-of ;
+            owl:someValuesFrom :CentralProcessingUnit ] .
+
+:CWE-1281 a owl:Class ;
+    rdfs:label "Sequence of Processor Instructions Leads to Unexpected Behavior" ;
+    rdfs:subClassOf :Weakness,
+        [ a owl:Restriction ;
+            owl:onProperty :may-be-weakness-of ;
+            owl:someValuesFrom :CentralProcessingUnit ] .
+
+:CWE-1303 a owl:Class ;
+    rdfs:label "Non-Transparent Sharing of Microarchitectural Resources" ;
+    rdfs:subClassOf :Weakness,
+        [ a owl:Restriction ;
+            owl:onProperty :may-be-weakness-of ;
+            owl:someValuesFrom :CentralProcessingUnit ] .
+
 :D3FENDCatalogThing a owl:Class ;
     rdfs:label "D3FEND Catalog Thing" ;
     skos:altLabel "D3FEND Vendor Registry Thing" ;
@@ -9143,8 +9171,12 @@ Application-layer discovery:
             owl:onProperty :updates ;
             owl:someValuesFrom :Software ] ;
     :d3fend-id "D3-SU" ;
-    :definition "Replacing old software on a computer system component." ;
-    :kb-reference :Reference-MethodAndSystemForProvidingSoftwareUpdatesToLocalMachines .
+    :definition "The act of applying a change to installed software – such as firmware, operating systems, or applications – that corrects security or functionality problems or adds new capabilities." ;
+    :kb-article """## How It Works
+
+When a vendor issues an updated version of software (a patch), both individuals and administrators of larger networks are responsible for acquiring the updated software and taking the steps to install the update on systems under their control.  Within enterprises, this update may be performed as part of a formal patch management process, defined as “the process of identifying, prioritizing, acquiring, installing, and verifying the installation of patches, updates, and upgrades throughout an organization.”""" ;
+    :kb-reference :Reference-MethodAndSystemForProvidingSoftwareUpdatesToLocalMachines,
+        :Reference-NIST-Special-Publication-800-40-Revision-4 .
 
 :SourceCode a owl:Class,
         owl:NamedIndividual,
@@ -18428,6 +18460,16 @@ architecture using the Snort NIDS.""" ;
     :kb-organization "NIST" ;
     :kb-reference-of :OperationalRiskAssessment ;
     :kb-reference-title "NIST Special Publication 800-37 Revision 2 - Risk Management Framework for Information Systems and Organizations" .
+
+:Reference-NIST-Special-Publication-800-40-Revision-4 a :GuidelineReference,
+        owl:NamedIndividual ;
+    rdfs:label "Reference - NIST Special Publication 800-40 Revision 4 - Guide to Enterprise Patch Management Planning" ;
+    :has-link "https://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.800-40r4.pdf" ;
+    :kb-abstract "This publication has been developed by NIST in accordance with its statutory responsibilities under the  Federal Information Security Modernization Act (FISMA) of 2014, 44 U.S.C. § 3551 et seq., Public Law (P.L.) 113-283. NIST is responsible for developing information security standards and guidelines, including minimum requirements for federal information systems, but such standards and guidelines shall not apply to national security systems without the express approval of appropriate federal officials exercising policy authority over such systems. This guideline is consistent with the requirements of the Office of Management and Budget (OMB) Circular A-130." ;
+    :kb-author "Murugiah Souppaya, Karen Scarfone" ;
+    :kb-organization "NIST" ;
+    :kb-reference-of :SoftwareUpdate ;
+    :kb-reference-title "NIST Special Publication 800-40 Revision 4 - Guide to Enterprise Patch Management Planning" .
 
 :Reference-NIST-Special-Publication-800-53A-Revision-5 a :GuidelineReference,
         owl:NamedIndividual ;

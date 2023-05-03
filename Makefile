@@ -2,8 +2,8 @@ MAKEFLAGS += --silent
 
 SHELL=/bin/bash
 
-D3FEND_VERSION :=0.11.0-BETA-1
-D3FEND_RELEASE_DATE :="2022-10-31T00:00:00.000Z"
+D3FEND_VERSION :=0.12.0-BETA-2
+D3FEND_RELEASE_DATE :="2023-03-21T00:00:00.000Z"
 
 JENA_VERSION := 4.5.0
 
@@ -365,7 +365,7 @@ dist: distdir
 	chmod 644 dist/public/d3fend.ttl dist/public/d3fend.owl
 	$(END)
 
-all: build extensions dist test ## build all, check for unallowed content, and test load files
+all: build build/d3fend.csv extensions dist test  ## build all, check for unallowed content, and test load files
 	$(END)
 
 print-new-techniques: build/d3fend.csv ## compare local build against current public version

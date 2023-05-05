@@ -3329,6 +3329,14 @@ Management servers with enterprise policies for account management provide the a
             owl:someValuesFrom :UserInputFunction ] ;
     :cwe-id "CWE-94" .
 
+:CWE-114 a owl:Class ;
+    rdfs:label "Process Control" ;
+    rdfs:subClassOf :Weakness,
+        [ a owl:Restriction ;
+            owl:onProperty :may-be-weakness-of ;
+            owl:someValuesFrom :ProcessCodeSegment ] ;
+    :cwe-id "CWE-114" .
+
 :CWE-119 a owl:Class ;
     rdfs:label "Improper Restriction of Operations within the Bounds of a Memory Buffer" ;
     rdfs:subClassOf :Weakness,
@@ -3397,6 +3405,14 @@ Management servers with enterprise policies for account management provide the a
     :comment "Cannot directly relate to artifacts due to breadth. Resource monitoring and limiting allocation is an approach to counter." ;
     :cwe-id "CWE-400" .
 
+:CWE-401 a owl:Class ;
+    rdfs:label "Missing Release of Memory after Effective Lifetime" ;
+    rdfs:subClassOf :Weakness,
+        [ a owl:Restriction ;
+            owl:onProperty :may-be-weakness-of ;
+            owl:someValuesFrom :PrimaryMemory ] ;
+    :cwe-id "CWE-401" .
+
 :CWE-416 a owl:Class ;
     rdfs:label "Use After Free" ;
     rdfs:subClassOf :Weakness ;
@@ -3430,6 +3446,14 @@ Management servers with enterprise policies for account management provide the a
             owl:someValuesFrom :DeserializationFunction ] ;
     :cwe-id "CWE-502" .
 
+:CWE-506 a owl:Class ;
+    rdfs:label "Embedded Malicious Code" ;
+    rdfs:subClassOf :Weakness,
+        [ a owl:Restriction ;
+            owl:onProperty :may-be-weakness-of ;
+            owl:someValuesFrom :SecondaryStorage ] ;
+    :cwe-id "CWE-506" .
+
 :CWE-611 a owl:Class ;
     rdfs:label "Improper Restriction of XML External Entity Reference" ;
     rdfs:subClassOf :Weakness,
@@ -3454,6 +3478,14 @@ Management servers with enterprise policies for account management provide the a
             owl:someValuesFrom :AuthenticationFunction ] ;
     :cwe-id "CWE-798" .
 
+:CWE-829 a owl:Class ;
+    rdfs:label "Inclusion of Functionality from Untrusted Control Sphere" ;
+    rdfs:subClassOf :Weakness,
+        [ a owl:Restriction ;
+            owl:onProperty :may-be-weakness-of ;
+            owl:someValuesFrom :ProcessCodeSegment ] ;
+    :cwe-id "CWE-829" .
+
 :CWE-862 a owl:Class ;
     rdfs:label "Missing Authorization" ;
     rdfs:subClassOf :Weakness ;
@@ -3468,33 +3500,231 @@ Management servers with enterprise policies for account management provide the a
             owl:someValuesFrom :UserInputFunction ] ;
     :cwe-id "CWE-918" .
 
+:CWE-921 a owl:Class ;
+    rdfs:label "Storage of Sensitive Data in a Mechanism without Access Control" ;
+    rdfs:subClassOf :Weakness,
+        [ a owl:Restriction ;
+            owl:onProperty :may-be-weakness-of ;
+            owl:someValuesFrom :SecondaryStorage ] ;
+    :cwe-id "CWE-921" .
+
 :CWE-1037 a owl:Class ;
     rdfs:label "Processor Optimization Removal or Modification of Security-critical Code" ;
     rdfs:subClassOf :Weakness,
         [ a owl:Restriction ;
-            owl:onProperty :weakness-of ;
-            owl:someValuesFrom :CentralProcessingUnit ] .
+            owl:onProperty :may-be-weakness-of ;
+            owl:someValuesFrom :CentralProcessingUnit ],
+        [ a owl:Restriction ;
+            owl:onProperty :may-be-weakness-of ;
+            owl:someValuesFrom :PageTable ],
+        [ a owl:Restriction ;
+            owl:onProperty :may-be-weakness-of ;
+            owl:someValuesFrom :ProcessorCacheMemory ] ;
+    :cwe-id "CWE-1037" .
+
+:CWE-1221 a owl:Class ;
+    rdfs:label "Incorrect Register Defaults or Module Parameters" ;
+    rdfs:subClassOf :Weakness,
+        [ a owl:Restriction ;
+            owl:onProperty :may-be-weakness-of ;
+            owl:someValuesFrom :ProcessorRegister ] ;
+    :cwe-id "CWE-1221" .
+
+:CWE-1222 a owl:Class ;
+    rdfs:label "Insufficient Granularity of Address Regions Protected by Register Locks" ;
+    rdfs:subClassOf :Weakness,
+        [ a owl:Restriction ;
+            owl:onProperty :may-be-weakness-of ;
+            owl:someValuesFrom :PrimaryMemory ] ;
+    :cwe-id "CWE-1222" .
+
+:CWE-1239 a owl:Class ;
+    rdfs:label "Improper Zeroization of Hardware Register" ;
+    rdfs:subClassOf :Weakness,
+        [ a owl:Restriction ;
+            owl:onProperty :may-be-weakness-of ;
+            owl:someValuesFrom :ProcessorRegister ] ;
+    :cwe-id "CWE-1239" .
+
+:CWE-1242 a owl:Class ;
+    rdfs:label "Inclusion of Undocumented Features or Chicken Bits" ;
+    rdfs:subClassOf :Weakness,
+        [ a owl:Restriction ;
+            owl:onProperty :may-be-weakness-of ;
+            owl:someValuesFrom :ROM ] ;
+    :cwe-id "CWE-1242" .
+
+:CWE-1246 a owl:Class ;
+    rdfs:label "Improper Write Handling in Limited-write Non-Volatile Memories" ;
+    rdfs:subClassOf :Weakness,
+        [ a owl:Restriction ;
+            owl:onProperty :may-be-weakness-of ;
+            owl:someValuesFrom :ROM ] ;
+    :cwe-id "CWE-1242" .
+
+:CWE-1250 a owl:Class ;
+    rdfs:label "Improper Preservation of Consistency Between Independent Representations of Shared State" ;
+    rdfs:subClassOf :Weakness,
+        [ a owl:Restriction ;
+            owl:onProperty :may-be-weakness-of ;
+            owl:someValuesFrom :MemoryManagementUnit ] ;
+    :cwe-id "CWE-1250" .
+
+:CWE-1251 a owl:Class ;
+    rdfs:label "Mirrored Regions with Different Values" ;
+    rdfs:subClassOf :Weakness,
+        [ a owl:Restriction ;
+            owl:onProperty :may-be-weakness-of ;
+            owl:someValuesFrom :MemoryManagementUnit ] ;
+    :cwe-id "CWE-1251" .
+
+:CWE-1252 a owl:Class ;
+    rdfs:label "CPU Hardware Not Configured to Support Exclusivity of Write and Execute Operations" ;
+    rdfs:subClassOf :Weakness,
+        [ a owl:Restriction ;
+            owl:onProperty :may-be-weakness-of ;
+            owl:someValuesFrom :MemoryManagementUnit ],
+        [ a owl:Restriction ;
+            owl:onProperty :may-be-weakness-of ;
+            owl:someValuesFrom :MemoryProtectionUnit ],
+        [ a owl:Restriction ;
+            owl:onProperty :may-be-weakness-of ;
+            owl:someValuesFrom :PrimaryMemory ] ;
+    :cwe-id "CWE-1252" .
+
+:CWE-1256 a owl:Class ;
+    rdfs:label "Improper Restriction of Software Interfaces to Hardware Features" ;
+    rdfs:subClassOf :Weakness,
+        [ a owl:Restriction ;
+            owl:onProperty :may-be-weakness-of ;
+            owl:someValuesFrom :RAM ] ;
+    :cwe-id "CWE-1256" .
+
+:CWE-1257 a owl:Class ;
+    rdfs:label "Improper Access Control Applied to Mirrored or Aliased Memory Regions" ;
+    rdfs:subClassOf :Weakness,
+        [ a owl:Restriction ;
+            owl:onProperty :may-be-weakness-of ;
+            owl:someValuesFrom :MemoryProtectionUnit ],
+        [ a owl:Restriction ;
+            owl:onProperty :may-be-weakness-of ;
+            owl:someValuesFrom :PrimaryMemory ] ;
+    :cwe-id "CWE-1257" .
+
+:CWE-1260 a owl:Class ;
+    rdfs:label "Improper Handling of Overlap Between Protected Memory Ranges" ;
+    rdfs:subClassOf :Weakness,
+        [ a owl:Restriction ;
+            owl:onProperty :may-be-weakness-of ;
+            owl:someValuesFrom :MemoryProtectionUnit ],
+        [ a owl:Restriction ;
+            owl:onProperty :may-be-weakness-of ;
+            owl:someValuesFrom :PrimaryMemory ] ;
+    :cwe-id "CWE-1260" .
 
 :CWE-1264 a owl:Class ;
     rdfs:label "Hardware Logic with Insecure De-Synchronization between Control and Data Channels" ;
     rdfs:subClassOf :Weakness,
         [ a owl:Restriction ;
             owl:onProperty :may-be-weakness-of ;
-            owl:someValuesFrom :CentralProcessingUnit ] .
+            owl:someValuesFrom :CentralProcessingUnit ],
+        [ a owl:Restriction ;
+            owl:onProperty :may-be-weakness-of ;
+            owl:someValuesFrom :PageTable ],
+        [ a owl:Restriction ;
+            owl:onProperty :may-be-weakness-of ;
+            owl:someValuesFrom :ProcessorCacheMemory ] ;
+    :cwe-id "CWE-1264" .
+
+:CWE-1271 a owl:Class ;
+    rdfs:label "Uninitialized Value on Reset for Registers Holding Security Settings" ;
+    rdfs:subClassOf :Weakness,
+        [ a owl:Restriction ;
+            owl:onProperty :may-be-weakness-of ;
+            owl:someValuesFrom :ProcessorRegister ] ;
+    :cwe-id "CWE-1271" .
+
+:CWE-1274 a owl:Class ;
+    rdfs:label "Improper Access Control for Volatile Memory Containing Boot Code" ;
+    rdfs:subClassOf :Weakness,
+        [ a owl:Restriction ;
+            owl:onProperty :may-be-weakness-of ;
+            owl:someValuesFrom :PrimaryMemory ],
+        [ a owl:Restriction ;
+            owl:onProperty :may-be-weakness-of ;
+            owl:someValuesFrom :RAM ],
+        [ a owl:Restriction ;
+            owl:onProperty :may-be-weakness-of ;
+            owl:someValuesFrom :ROM ] ;
+    :cwe-id "CWE-1274" .
 
 :CWE-1281 a owl:Class ;
     rdfs:label "Sequence of Processor Instructions Leads to Unexpected Behavior" ;
     rdfs:subClassOf :Weakness,
         [ a owl:Restriction ;
             owl:onProperty :may-be-weakness-of ;
-            owl:someValuesFrom :CentralProcessingUnit ] .
+            owl:someValuesFrom :CentralProcessingUnit ],
+        [ a owl:Restriction ;
+            owl:onProperty :may-be-weakness-of ;
+            owl:someValuesFrom :PageTable ],
+        [ a owl:Restriction ;
+            owl:onProperty :may-be-weakness-of ;
+            owl:someValuesFrom :ROM ] ;
+    :cwe-id "CWE-1281" .
+
+:CWE-1282 a owl:Class ;
+    rdfs:label "Assumed-Immutable Data is Stored in Writable Memory" ;
+    rdfs:subClassOf :Weakness,
+        [ a owl:Restriction ;
+            owl:onProperty :may-be-weakness-of ;
+            owl:someValuesFrom :PrimaryMemory ] ;
+    :cwe-id "CWE-1282" .
 
 :CWE-1303 a owl:Class ;
     rdfs:label "Non-Transparent Sharing of Microarchitectural Resources" ;
     rdfs:subClassOf :Weakness,
         [ a owl:Restriction ;
             owl:onProperty :may-be-weakness-of ;
-            owl:someValuesFrom :CentralProcessingUnit ] .
+            owl:someValuesFrom :CentralProcessingUnit ],
+        [ a owl:Restriction ;
+            owl:onProperty :may-be-weakness-of ;
+            owl:someValuesFrom :PageTable ],
+        [ a owl:Restriction ;
+            owl:onProperty :may-be-weakness-of ;
+            owl:someValuesFrom :ProcessorCacheMemory ] ;
+    :cwe-id "CWE-1303" .
+
+:CWE-1312 a owl:Class ;
+    rdfs:label "Missing Protection for Mirrored Regions in On-Chip Fabric Firewall" ;
+    rdfs:subClassOf :Weakness,
+        [ a owl:Restriction ;
+            owl:onProperty :may-be-weakness-of ;
+            owl:someValuesFrom :PrimaryMemory ] ;
+    :cwe-id "CWE-1312" .
+
+:CWE-1316 a owl:Class ;
+    rdfs:label "Fabric-Address Map Allows Programming of Unwarranted Overlaps of Protected and Unprotected Ranges" ;
+    rdfs:subClassOf :Weakness,
+        [ a owl:Restriction ;
+            owl:onProperty :may-be-weakness-of ;
+            owl:someValuesFrom :PrimaryMemory ] ;
+    :cwe-id "CWE-1316" .
+
+:CWE-1326 a owl:Class ;
+    rdfs:label "Missing Immutable Root of Trust in Hardware" ;
+    rdfs:subClassOf :Weakness,
+        [ a owl:Restriction ;
+            owl:onProperty :may-be-weakness-of ;
+            owl:someValuesFrom :PrimaryMemory ] ;
+    :cwe-id "CWE-1326" .
+
+:CWE-1330 a owl:Class ;
+    rdfs:label "Remanent Data Readable after Memory Erase" ;
+    rdfs:subClassOf :Weakness,
+        [ a owl:Restriction ;
+            owl:onProperty :may-be-weakness-of ;
+            owl:someValuesFrom :RAM ] ;
+    :cwe-id "CWE-1330" .
 
 :D3FENDCatalogThing a owl:Class ;
     rdfs:label "D3FEND Catalog Thing" ;
@@ -6613,6 +6843,8 @@ This technique monitors for indicators of whether a return address is outside me
 Kernel malware can manipulate memory contents, for example modifying pointers to hide processes, and thereby impact the accuracy of memory allocation information used to perform the analysis.""" ;
     :kb-reference :Reference-InferentialExploitAttemptDetection_CrowdstrikeInc .
 
+:MemoryExtent a owl:Class .
+
 :MemoryFreeFunction a owl:Class ;
     rdfs:label "Memory Free Function" ;
     rdfs:subClassOf :Subroutine,
@@ -8085,6 +8317,8 @@ A known potential limitation of PACs concerns signing gadgets. Under certain cir
     rdfs:label "Primary Memory Component" ;
     rdfs:subClassOf :HardwareDevice .
 
+:PrimaryStorage a owl:Class .
+
 :PrintServer a owl:Class ;
     rdfs:label "Print Server" ;
     rdfs:subClassOf :Server ;
@@ -9049,7 +9283,10 @@ Queries for reverse resolution requests (that is, requests where IP(s) are sent 
     rdfs:subClassOf :RFNode .
 
 :ROM a owl:Class ;
-    rdfs:subClassOf :PrimaryMemoryComponent ;
+    rdfs:subClassOf :PrimaryMemoryComponent,
+        [ a owl:Restriction ;
+            owl:onProperty :may-contain ;
+            owl:someValuesFrom :T1592.003 ] ;
     rdfs:isDefinedBy "https://dbpedia.org/resource/Read-only_memory" ;
     :definition "Read-only memory (ROM) is a type of non-volatile memory used in computers and other electronic devices. Data stored in ROM cannot be electronically modified after the manufacture of the memory device. Read-only memory is useful for storing software that is rarely changed during the life of the system, also known as firmware." ;
     rdfs:seeAlso "ROM" ;
@@ -9179,7 +9416,10 @@ List of known unauthorized script files or regular expression patterns must be k
             owl:someValuesFrom :BinaryLargeObject ],
         [ a owl:Restriction ;
             owl:onProperty :may-contain ;
-            owl:someValuesFrom :BinarySegment ] ;
+            owl:someValuesFrom :BinarySegment ],
+        [ a owl:Restriction ;
+            owl:onProperty :may-contain ;
+            owl:someValuesFrom :FileSystem ] ;
     rdfs:isDefinedBy "https://whatis.techtarget.com/definition/memory" ;
     :definition "Secondary storage (storage, hard disk) is the computer component holding information that does not need to be accessed quickly and that needs to be retained long-term." ;
     rdfs:seeAlso "https://en.wikipedia.org/wiki/Computer_data_storage#Secondary_storage" ;
@@ -9812,7 +10052,10 @@ A standalone honeynet is a lower risk to deploy compared to connected or integra
             owl:someValuesFrom :FileSystem ],
         [ a owl:Restriction ;
             owl:onProperty :may-contain ;
-            owl:someValuesFrom :MemoryBlock ] ;
+            owl:someValuesFrom :MemoryBlock ],
+        [ a owl:Restriction ;
+            owl:onProperty :may-contain ;
+            owl:someValuesFrom :MemoryWord ] ;
     rdfs:isDefinedBy <http://dbpedia.org/resource/Computer_data_storage> ;
     :definition "Computer data storage, often called storage or memory, is a technology consisting of computer components and recording media used to retain digital data. It is a core function and fundamental component of computers." ;
     :synonym "Computer data storage",

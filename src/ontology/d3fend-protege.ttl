@@ -7,10 +7,10 @@
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 
 <http://d3fend.mitre.org/ontologies/d3fend.owl> a owl:Ontology ;
-    rdfs:comment "Use of the D3FEND Knowledge Graph, and the associated references from this ontology are subject to the Terms of Use. D3FEND is funded by the National Security Agency (NSA) Cybersecurity Directorate and managed by the National Security Engineering Center (NSEC) which is operated by The MITRE Corporation. D3FEND™ and the D3FEND logo are trademarks of The MITRE Corporation. This software was produced for the U.S. Government under Basic Contract No. W56KGU-18-D0004, and is subject to the Rights in Noncommercial Computer Software and Noncommercial Computer Software Documentation Clause 252.227-7014 (FEB 2012) Copyright 2022 The MITRE Corporation."^^xsd:string ;
-    dcterms:description "D3FEND is a framework which encodes a countermeasure knowledge base as a knowledge graph. The graph contains the types and relations that define key concepts in the cybersecurity countermeasure domain and the relations necessary to link those concepts to each other. Each of these concepts and relations are linked to references in the cybersecurity literature."^^xsd:string ;
-    dcterms:license "MIT"^^xsd:string ;
-    dcterms:title "D3FEND™ - A knowledge graph of cybersecurity countermeasures"^^xsd:string .
+    rdfs:comment "Use of the D3FEND Knowledge Graph, and the associated references from this ontology are subject to the Terms of Use. D3FEND is funded by the National Security Agency (NSA) Cybersecurity Directorate and managed by the National Security Engineering Center (NSEC) which is operated by The MITRE Corporation. D3FEND™ and the D3FEND logo are trademarks of The MITRE Corporation. This software was produced for the U.S. Government under Basic Contract No. W56KGU-18-D0004, and is subject to the Rights in Noncommercial Computer Software and Noncommercial Computer Software Documentation Clause 252.227-7014 (FEB 2012) Copyright 2022 The MITRE Corporation." ;
+    dcterms:description "D3FEND is a framework which encodes a countermeasure knowledge base as a knowledge graph. The graph contains the types and relations that define key concepts in the cybersecurity countermeasure domain and the relations necessary to link those concepts to each other. Each of these concepts and relations are linked to references in the cybersecurity literature." ;
+    dcterms:license "MIT" ;
+    dcterms:title "D3FEND™ - A knowledge graph of cybersecurity countermeasures" .
 
 ### Object Properties
 
@@ -2396,7 +2396,7 @@ Byte sequences containing code that is never used as machine code are still anal
 
 :CacheMemory a owl:Class ;
     rdfs:label "Processor Cache Memory" ;
-    rdfs:subClassOf :PrimaryStorage,
+    rdfs:subClassOf :PrimaryMemory,
         [ a owl:Restriction ;
             owl:onProperty :accessed-by ;
             owl:someValuesFrom :CentralProcessingUnit ],
@@ -2734,7 +2734,7 @@ Profiling request and response payloads across multiple clients to a single serv
 
 :CloudStorage a owl:Class ;
     rdfs:label "Cloud Storage" ;
-    rdfs:subClassOf :SecondaryStorage ;
+    rdfs:subClassOf :SecondaryMemory ;
     rdfs:isDefinedBy <http://dbpedia.org/resource/Cloud_storage> ;
     :definition "Cloud storage is storage held within a computing cloud." ;
     rdfs:seeAlso <http://dbpedia.org/resource/Cloud_computing> .
@@ -3451,7 +3451,7 @@ Management servers with enterprise policies for account management provide the a
     rdfs:subClassOf :Weakness,
         [ a owl:Restriction ;
             owl:onProperty :may-be-weakness-of ;
-            owl:someValuesFrom :SecondaryStorage ] ;
+            owl:someValuesFrom :SecondaryMemory ] ;
     :cwe-id "CWE-506" .
 
 :CWE-611 a owl:Class ;
@@ -3505,7 +3505,7 @@ Management servers with enterprise policies for account management provide the a
     rdfs:subClassOf :Weakness,
         [ a owl:Restriction ;
             owl:onProperty :may-be-weakness-of ;
-            owl:someValuesFrom :SecondaryStorage ] ;
+            owl:someValuesFrom :SecondaryMemory ] ;
     :cwe-id "CWE-921" .
 
 :CWE-1037 a owl:Class ;
@@ -4285,7 +4285,7 @@ A credential may be:
     rdfs:subClassOf :PlatformHardening,
         [ a owl:Restriction ;
             owl:onProperty :encrypts ;
-            owl:someValuesFrom :Storage ] ;
+            owl:someValuesFrom :Memory ] ;
     :d3fend-id "D3-DENCR" ;
     :definition "Encrypting a hard disk partition to prevent cleartext access to a file system." ;
     :kb-reference :Reference-LUKS1On-DiskFormatSpecificationVersion1.2.3 .
@@ -5215,7 +5215,7 @@ On Windows systems, deleting a file in File Explorer does not permanently delete
 
 :FileSystem a owl:Class ;
     rdfs:label "File System" ;
-    rdfs:subClassOf :Storage,
+    rdfs:subClassOf :Memory,
         [ a owl:Restriction ;
             owl:onProperty :contains ;
             owl:someValuesFrom :Directory ],
@@ -5365,7 +5365,7 @@ Cryptographic hash values are computed for system and peripheral firmware. The h
 
 :FlashMemory a owl:Class ;
     rdfs:label "Flash Memory" ;
-    rdfs:subClassOf :SecondaryStorage ;
+    rdfs:subClassOf :SecondaryMemory ;
     rdfs:isDefinedBy "https://dbpedia.org/page/Flash_memory" ;
     :definition "Flash memory is an electronic non-volatile computer memory storage medium that can be electrically erased and reprogrammed." .
 
@@ -6789,6 +6789,23 @@ Initial planning of access model and continuous monitoring of the available user
     rdfs:isDefinedBy <http://dbpedia.org/resource/Media_server> ;
     :definition "A media server is a computer appliance or an application software that stores digital media (video, audio or images) and makes it available over a network. Media servers range from servers that provide video on demand to smaller personal computers or NAS (Network Attached Storage) for the home." .
 
+:Memory a owl:Class ;
+    rdfs:label "Memory" ;
+    rdfs:subClassOf :DigitalArtifact,
+        [ a owl:Restriction ;
+            owl:onProperty :may-contain ;
+            owl:someValuesFrom :FileSystem ],
+        [ a owl:Restriction ;
+            owl:onProperty :may-contain ;
+            owl:someValuesFrom :MemoryBlock ],
+        [ a owl:Restriction ;
+            owl:onProperty :may-contain ;
+            owl:someValuesFrom :MemoryWord ] ;
+    rdfs:isDefinedBy <http://dbpedia.org/resource/Computer_data_storage> ;
+    :definition "Computer data storage, often called storage or memory, is a technology consisting of computer components and recording media used to retain digital data. It is a core function and fundamental component of computers." ;
+    :synonym "Computer data storage",
+        "Storage" .
+
 :MemoryAddress a owl:Class ;
     rdfs:label "Memory Address" ;
     rdfs:subClassOf :DigitalArtifact,
@@ -6816,7 +6833,7 @@ Initial planning of access model and continuous monitoring of the available user
 
 :MemoryBlock a owl:Class ;
     rdfs:label "Memory Block" ;
-    rdfs:subClassOf :Storage,
+    rdfs:subClassOf :Memory,
         [ a owl:Restriction ;
             owl:onProperty :contains ;
             owl:someValuesFrom :MemoryWord ],
@@ -6843,8 +6860,6 @@ This technique monitors for indicators of whether a return address is outside me
 Kernel malware can manipulate memory contents, for example modifying pointers to hide processes, and thereby impact the accuracy of memory allocation information used to perform the analysis.""" ;
     :kb-reference :Reference-InferentialExploitAttemptDetection_CrowdstrikeInc .
 
-:MemoryExtent a owl:Class .
-
 :MemoryFreeFunction a owl:Class ;
     rdfs:label "Memory Free Function" ;
     rdfs:subClassOf :Subroutine,
@@ -6861,10 +6876,10 @@ Kernel malware can manipulate memory contents, for example modifying pointers to
             owl:someValuesFrom :VirtualAddress ],
         [ a owl:Restriction ;
             owl:onProperty :manages ;
-            owl:someValuesFrom :PageTable ],
+            owl:someValuesFrom :Memory ],
         [ a owl:Restriction ;
             owl:onProperty :manages ;
-            owl:someValuesFrom :Storage ],
+            owl:someValuesFrom :PageTable ],
         [ a owl:Restriction ;
             owl:onProperty :may-contain ;
             owl:someValuesFrom :TranslationLookasideBuffer ] ;
@@ -6896,7 +6911,7 @@ Kernel malware can manipulate memory contents, for example modifying pointers to
 
 :MemoryWord a owl:Class ;
     rdfs:label "Memory Word" ;
-    rdfs:subClassOf :MemoryExtent ;
+    rdfs:subClassOf :Memory ;
     rdfs:isDefinedBy "https://dbpedia.org/page/Word_(computer_architecture)" ;
     :definition "A memory word is the natural unit of data used by a particular computer processor design; a fixed-size piece of data handled as a unit by the instruction set or the hardware of the processor." .
 
@@ -7875,10 +7890,7 @@ There are various strategies for developing filtering rulesets:
 
 :PageFrame a owl:Class ;
     rdfs:label "Page Frame" ;
-    rdfs:subClassOf :MemoryBlock,
-        [ a owl:Restriction ;
-            owl:onProperty :contained-by ;
-            owl:someValuesFrom :PrimaryStorage ] ;
+    rdfs:subClassOf :MemoryBlock ;
     rdfs:isDefinedBy "https://dbpedia.org/page/Page_(computer_memory)" ;
     :definition "A page frame is the smallest fixed-length contiguous block of physical memory into which memory pages are mapped by the operating system." .
 
@@ -8292,7 +8304,7 @@ A known potential limitation of PACs concerns signing gadgets. Under certain cir
 :PrimaryMemory a owl:Class ;
     rdfs:label "Primary Memory" ;
     rdfs:subClassOf :HardwareDevice,
-        :Storage,
+        :Memory,
         [ a owl:Restriction ;
             owl:onProperty :contains ;
             owl:someValuesFrom :PrimaryMemoryComponent ],
@@ -8316,8 +8328,6 @@ A known potential limitation of PACs concerns signing gadgets. Under certain cir
 :PrimaryMemoryComponent a owl:Class ;
     rdfs:label "Primary Memory Component" ;
     rdfs:subClassOf :HardwareDevice .
-
-:PrimaryStorage a owl:Class .
 
 :PrintServer a owl:Class ;
     rdfs:label "Print Server" ;
@@ -8562,7 +8572,7 @@ For example, Microsoft Word may block execution of any subprocess that is not in
             owl:someValuesFrom :ProcessorComponent ],
         [ a owl:Restriction ;
             owl:onProperty :may-access ;
-            owl:someValuesFrom :Storage ],
+            owl:someValuesFrom :Memory ],
         [ a owl:Restriction ;
             owl:onProperty :may-contain ;
             owl:someValuesFrom :ProcessorRegister ] ;
@@ -9407,10 +9417,10 @@ List of known unauthorized script files or regular expression patterns must be k
     rdfs:subClassOf :BootLoader ;
     :definition "An optional, often feature rich,  second stage set of routines run in order to load the operating system." .
 
-:SecondaryStorage a owl:Class ;
-    rdfs:label "Secondary Storage" ;
+:SecondaryMemory a owl:Class ;
+    rdfs:label "Secondary Memory" ;
     rdfs:subClassOf :HardwareDevice,
-        :Storage,
+        :Memory,
         [ a owl:Restriction ;
             owl:onProperty :may-contain ;
             owl:someValuesFrom :BinaryLargeObject ],
@@ -9421,9 +9431,8 @@ List of known unauthorized script files or regular expression patterns must be k
             owl:onProperty :may-contain ;
             owl:someValuesFrom :FileSystem ] ;
     rdfs:isDefinedBy "https://whatis.techtarget.com/definition/memory" ;
-    :definition "Secondary storage (storage, hard disk) is the computer component holding information that does not need to be accessed quickly and that needs to be retained long-term." ;
-    rdfs:seeAlso "https://en.wikipedia.org/wiki/Computer_data_storage#Secondary_storage" ;
-    :synonym "Secondary Memory" .
+    :definition "Secondary memory (storage, hard disk) is the computer component holding information that does not need to be accessed quickly and that needs to be retained long-term." ;
+    rdfs:seeAlso "https://en.wikipedia.org/wiki/Computer_data_storage#Secondary_storage" .
 
 :SecurityToken a owl:Class ;
     rdfs:label "Security Token" ;
@@ -10043,23 +10052,6 @@ A standalone honeynet is a lower risk to deploy compared to connected or integra
         [ a owl:Restriction ;
             owl:onProperty :next ;
             owl:someValuesFrom :Step ] .
-
-:Storage a owl:Class ;
-    rdfs:label "Storage" ;
-    rdfs:subClassOf :DigitalArtifact,
-        [ a owl:Restriction ;
-            owl:onProperty :may-contain ;
-            owl:someValuesFrom :FileSystem ],
-        [ a owl:Restriction ;
-            owl:onProperty :may-contain ;
-            owl:someValuesFrom :MemoryBlock ],
-        [ a owl:Restriction ;
-            owl:onProperty :may-contain ;
-            owl:someValuesFrom :MemoryWord ] ;
-    rdfs:isDefinedBy <http://dbpedia.org/resource/Computer_data_storage> ;
-    :definition "Computer data storage, often called storage or memory, is a technology consisting of computer components and recording media used to retain digital data. It is a core function and fundamental component of computers." ;
-    :synonym "Computer data storage",
-        "Memory" .
 
 :StoredProcedure a owl:Class ;
     rdfs:label "Stored Procedure" ;
@@ -14682,7 +14674,7 @@ When system firmware verification fails a set of predefined responses is typical
             owl:someValuesFrom :SystemConfigurationDatabase ],
         [ a owl:Restriction ;
             owl:onProperty :modifies ;
-            owl:someValuesFrom :Storage ] ;
+            owl:someValuesFrom :Memory ] ;
     :attack-id "T1564.005" .
 
 :T1564.006 a owl:Class ;
@@ -15688,11 +15680,11 @@ When system firmware verification fails a set of predefined responses is typical
     rdfs:isDefinedBy <http://dbpedia.org/resource/Exit_(system_call)> ;
     :definition "On many computer operating systems, a computer process terminates its execution by making an exit system call. More generally, an exit in a multithreading environment means that a thread of execution has stopped running. For resource management, the operating system reclaims resources (memory, files, etc.) that were used by the process. The process is said to be a dead process after it terminates." .
 
-:TertiaryStorage a owl:Class ;
-    rdfs:label "Tertiary Storage" ;
+:TertiaryMemory a owl:Class ;
+    rdfs:label "Tertiary Memory" ;
     rdfs:subClassOf :HardwareDevice,
         :MemoryBlock,
-        :SecondaryStorage ;
+        :SecondaryMemory ;
     rdfs:isDefinedBy "https://en.wikipedia.org/wiki/Computer_data_storage#Tertiary_storage" ;
     :definition "Tertiary storage or tertiary memory is memory primarily used for archiving rarely accessed information. It is primarily useful for extraordinarily large data stores. Typical examples include tape libraries and optical jukeboxes." .
 

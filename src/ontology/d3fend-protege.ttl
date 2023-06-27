@@ -3280,6 +3280,30 @@ Management servers with enterprise policies for account management provide the a
             owl:someValuesFrom :UserInputFunction ] ;
     :cwe-id "CWE-22" .
 
+:CWE-45 a owl:Class ;
+    rdfs:label "Path Equivalence: 'file...name' (Multiple Internal Dot)" ;
+    rdfs:subClassOf :Weakness,
+        [ a owl:Restriction ;
+            owl:onProperty :may-be-weakness-of ;
+            owl:someValuesFrom :FileSystem ] ;
+    :cwe-id "CWE-45" .
+
+:CWE-59 a owl:Class ;
+    rdfs:label "Improper Link Resolution Before File Access ('Link Following')" ;
+    rdfs:subClassOf :Weakness,
+        [ a owl:Restriction ;
+            owl:onProperty :may-be-weakness-of ;
+            owl:someValuesFrom :FileSystem ] ;
+    :cwe-id "CWE-59" .
+
+:CWE-73 a owl:Class ;
+    rdfs:label "External Control of File Name or Path" ;
+    rdfs:subClassOf :Weakness,
+        [ a owl:Restriction ;
+            owl:onProperty :may-be-weakness-of ;
+            owl:someValuesFrom :FileSystem ] ;
+    :cwe-id "CWE-73" .
+
 :CWE-77 a owl:Class ;
     rdfs:label "Improper Neutralization of Special Elements used in a Command ('Command Injection')" ;
     rdfs:subClassOf :Weakness,
@@ -3345,6 +3369,17 @@ Management servers with enterprise policies for account management provide the a
             owl:someValuesFrom :RawMemoryAccessFunction ] ;
     :cwe-id "CWE-119" .
 
+:CWE-121 a owl:Class ;
+    rdfs:label "Stack-based Buffer Overflow" ;
+    rdfs:subClassOf :Weakness,
+        [ a owl:Restriction ;
+            owl:onProperty :may-be-weakness-of ;
+            owl:someValuesFrom :CallStack ],
+        [ a owl:Restriction ;
+            owl:onProperty :may-be-weakness-of ;
+            owl:someValuesFrom :ReturnAddress ] ;
+    :cwe-id "CWE-121" .
+
 :CWE-125 a owl:Class ;
     rdfs:label "Out-of-bounds Read" ;
     rdfs:subClassOf :Weakness,
@@ -3360,6 +3395,14 @@ Management servers with enterprise policies for account management provide the a
             owl:onProperty :weakness-of ;
             owl:someValuesFrom :MathematicalFunction ] ;
     :cwe-id "CWE-190" .
+
+:CWE-244 a owl:Class ;
+    rdfs:label "Improper Clearing of Heap Memory Before Release ('Heap Inspection')" ;
+    rdfs:subClassOf :Weakness,
+        [ a owl:Restriction ;
+            owl:onProperty :may-be-weakness-of ;
+            owl:someValuesFrom :MemoryBlock ] ;
+    :cwe-id "CWE-244" .
 
 :CWE-276 a owl:Class ;
     rdfs:label "Incorrect Default Permissions" ;
@@ -3454,6 +3497,14 @@ Management servers with enterprise policies for account management provide the a
             owl:someValuesFrom :SecondaryMemory ] ;
     :cwe-id "CWE-506" .
 
+:CWE-562 a owl:Class ;
+    rdfs:label "Return of Stack Variable Address" ;
+    rdfs:subClassOf :Weakness,
+        [ a owl:Restriction ;
+            owl:onProperty :may-be-weakness-of ;
+            owl:someValuesFrom :CallStack ] ;
+    :cwe-id "CWE-562" .
+
 :CWE-611 a owl:Class ;
     rdfs:label "Improper Restriction of XML External Entity Reference" ;
     rdfs:subClassOf :Weakness,
@@ -3461,6 +3512,14 @@ Management servers with enterprise policies for account management provide the a
             owl:onProperty :weakness-of ;
             owl:someValuesFrom :ExternalContentInclusionFunction ] ;
     :cwe-id "CWE-611" .
+
+:CWE-674 a owl:Class ;
+    rdfs:label "Uncontrolled Recursion" ;
+    rdfs:subClassOf :Weakness,
+        [ a owl:Restriction ;
+            owl:onProperty :may-be-weakness-of ;
+            owl:someValuesFrom :CallStack ] ;
+    :cwe-id "CWE-674" .
 
 :CWE-787 a owl:Class ;
     rdfs:label "Out-of-bounds Write" ;
@@ -3559,6 +3618,9 @@ Management servers with enterprise policies for account management provide the a
     rdfs:subClassOf :Weakness,
         [ a owl:Restriction ;
             owl:onProperty :may-be-weakness-of ;
+            owl:someValuesFrom :MemoryBlock ],
+        [ a owl:Restriction ;
+            owl:onProperty :may-be-weakness-of ;
             owl:someValuesFrom :ROM ] ;
     :cwe-id "CWE-1242" .
 
@@ -3608,12 +3670,21 @@ Management servers with enterprise policies for account management provide the a
             owl:someValuesFrom :MemoryProtectionUnit ],
         [ a owl:Restriction ;
             owl:onProperty :may-be-weakness-of ;
-            owl:someValuesFrom :PrimaryMemory ] ;
+            owl:someValuesFrom :PhysicalAddress ],
+        [ a owl:Restriction ;
+            owl:onProperty :may-be-weakness-of ;
+            owl:someValuesFrom :PrimaryMemory ],
+        [ a owl:Restriction ;
+            owl:onProperty :may-be-weakness-of ;
+            owl:someValuesFrom :VirtualAddress ] ;
     :cwe-id "CWE-1257" .
 
 :CWE-1260 a owl:Class ;
     rdfs:label "Improper Handling of Overlap Between Protected Memory Ranges" ;
     rdfs:subClassOf :Weakness,
+        [ a owl:Restriction ;
+            owl:onProperty :may-be-weakness-of ;
+            owl:someValuesFrom :MemoryBlock ],
         [ a owl:Restriction ;
             owl:onProperty :may-be-weakness-of ;
             owl:someValuesFrom :MemoryProtectionUnit ],
@@ -8114,9 +8185,15 @@ Changes in firmware hash values may indicate that the firmware has been tampered
 
 :PhysicalAddress a owl:Class ;
     rdfs:label "Physical Address" ;
-    rdfs:subClassOf :MemoryAddress ;
+    rdfs:subClassOf :PhysicalAddressSpace ;
     rdfs:isDefinedBy "https://dbpedia.org/page/Physical_address" ;
     :definition "In a computer supporting virtual memory, the term physical address is used mostly to differentiate from a virtual address. In particular, in computers utilizing a memory management unit (MMU) to translate memory addresses, the virtual and physical addresses refer to an address before and after translation performed by the MMU, respectively." .
+
+:PhysicalAddressSpace a owl:Class ;
+    rdfs:label "Physical Address Space" ;
+    rdfs:subClassOf :MemoryAddress ;
+    rdfs:isDefinedBy "https://www.techopedia.com/definition/4763/address-space" ;
+    :definition "An address space is a range of valid addresses in memory that are available for a program or process. That is, it is the memory that a program or process can access. The memory can be either physical or virtual and is used for executing instructions and storing data." .
 
 :PhysicalArtifact a owl:Class ;
     rdfs:label "Physical Artifact" ;
@@ -16155,12 +16232,18 @@ Geolocation data for each user logon attempt is collected and used to create a b
 
 :VirtualAddress a owl:Class ;
     rdfs:label "Virtual Address" ;
-    rdfs:subClassOf :MemoryAddress ;
+    rdfs:subClassOf :VirtualAddressSpace ;
     rdfs:isDefinedBy "https://www.techopedia.com/definition/9934/virtual-address-va" ;
     :definition "A virtual address in memory is a pointer or marker for a memory space that an operating system allows a process to use. The virtual address points to a location in primary storage that a process can use independently of other processes." ;
     rdfs:seeAlso "https://dbpedia.org/page/Virtual_address_space",
         "https://en.wikipedia.org/wiki/Memory_address#Logical_addresses" ;
     :synonym "Logical Address" .
+
+:VirtualAddressSpace a owl:Class ;
+    rdfs:label "Virtual Address Space" ;
+    rdfs:subClassOf :MemoryAddress ;
+    rdfs:isDefinedBy "https://dbpedia.org/page/Virtual_address_space" ;
+    :definition "In computing, a virtual address space (VAS) or address space is the set of ranges of virtual addresses that an operating system makes available to a process." .
 
 :VirtualizationSoftware a owl:Class ;
     rdfs:label "Virtualization Software" ;

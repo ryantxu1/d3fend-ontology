@@ -6910,6 +6910,9 @@ Initial planning of access model and continuous monitoring of the available user
             owl:someValuesFrom :MemoryWord ],
         [ a owl:Restriction ;
             owl:onProperty :may-contain ;
+            owl:someValuesFrom :MemoryAddress ],
+        [ a owl:Restriction ;
+            owl:onProperty :may-contain ;
             owl:someValuesFrom :Record ] ;
     rdfs:isDefinedBy "https://dbpedia.org/page/Block_(data_storage)" ;
     :definition "In computing (specifically data transmission and data storage), a block, sometimes called a physical record, is a sequence of bytes or bits, usually containing some whole number of records, having a maximum length; a block size. Data thus structured are said to be blocked. The process of putting data into blocks is called blocking, while deblocking is the process of extracting data from blocks. Blocked data is normally stored in a data buffer and read or written a whole block at a time." .
@@ -15866,7 +15869,10 @@ DMARC is an email policy and authentication protocol that seeks to ensure that t
 
 :TranslationLookasideBuffer a owl:Class ;
     rdfs:label "Translation Lookaside Buffer" ;
-    rdfs:subClassOf :MemoryManagementUnitComponent ;
+    rdfs:subClassOf :MemoryManagementUnitComponent,
+        [ a owl:Restriction ;
+            owl:onProperty :contains ;
+            owl:someValuesFrom :MemoryAddress ] ;
     rdfs:isDefinedBy "https://dbpedia.org/page/Translation_lookaside_buffer" ;
     :definition "A translation lookaside buffer (TLB) is a memory cache that is used to reduce the time taken to access a user memory location. It is a part of the chip's memory-management unit (MMU)." .
 

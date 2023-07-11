@@ -2394,22 +2394,6 @@ Byte sequences containing code that is never used as machine code are still anal
     rdfs:seeAlso <http://dbpedia.org/resource/Certificate_authority>,
         <http://dbpedia.org/resource/Public_key_infrastructure> .
 
-:CacheMemory a owl:Class ;
-    rdfs:label "Processor Cache Memory" ;
-    rdfs:subClassOf :PrimaryMemory,
-        [ a owl:Restriction ;
-            owl:onProperty :accessed-by ;
-            owl:someValuesFrom :CentralProcessingUnit ],
-        [ a owl:Restriction ;
-            owl:onProperty :may-contain ;
-            owl:someValuesFrom :ProcessSegment ],
-        [ a owl:Restriction ;
-            owl:onProperty :modifies ;
-            owl:someValuesFrom :CacheMemory ] ;
-    rdfs:isDefinedBy "https://whatis.techtarget.com/definition/memory" ;
-    :definition "Cache memory is temporary storage that is more readily available to the processor than the computer's main memory source, located between the main memory and the processor.  It is typically either integrated directly into the CPU chip (level 1 cache) or placed on a separate chip with a bus interconnect with the CPU (level 2 cache)." ;
-    rdfs:seeAlso "https://dbpedia.org/page/CPU_cache" .
-
 :CallStack a owl:Class ;
     rdfs:label "Call Stack" ;
     rdfs:subClassOf :DigitalArtifact,
@@ -8188,13 +8172,19 @@ Changes in firmware hash values may indicate that the firmware has been tampered
 
 :PhysicalAddress a owl:Class ;
     rdfs:label "Physical Address" ;
-    rdfs:subClassOf :PhysicalAddressSpace ;
+    rdfs:subClassOf :MemoryAddress,
+        [ a owl:Restriction ;
+            owl:onProperty :contained-by ;
+            owl:someValuesFrom :PhysicalAddressSpace ] ;
     rdfs:isDefinedBy "https://dbpedia.org/page/Physical_address" ;
     :definition "In a computer supporting virtual memory, the term physical address is used mostly to differentiate from a virtual address. In particular, in computers utilizing a memory management unit (MMU) to translate memory addresses, the virtual and physical addresses refer to an address before and after translation performed by the MMU, respectively." .
 
 :PhysicalAddressSpace a owl:Class ;
     rdfs:label "Physical Address Space" ;
-    rdfs:subClassOf :MemoryAddress ;
+    rdfs:subClassOf :MemoryAddressSpace,
+        [ a owl:Restriction ;
+            owl:onProperty :contains ;
+            owl:someValuesFrom :PhysicalAddress ] ;
     rdfs:isDefinedBy "https://www.techopedia.com/definition/4763/address-space" ;
     :definition "An address space is a range of valid addresses in memory that are available for a program or process. That is, it is the memory that a program or process can access. The memory can be either physical or virtual and is used for executing instructions and storing data." .
 
@@ -8673,10 +8663,7 @@ For example, Microsoft Word may block execution of any subprocess that is not in
             owl:someValuesFrom :MemoryAddress ],
         [ a owl:Restriction ;
             owl:onProperty :may-contain ;
-            owl:someValuesFrom :MemoryWord ],
-        [ a owl:Restriction ;
-            owl:onProperty :modifies ;
-            owl:someValuesFrom :ProcessorCacheMemory ] ;
+            owl:someValuesFrom :MemoryWord ] ;
     rdfs:isDefinedBy "https://whatis.techtarget.com/definition/memory" ;
     :definition "Cache memory is temporary storage that is more readily available to the processor than the computer's main memory source, located between the main memory and the processor.  It is typically either integrated directly into the CPU chip (level 1 cache) or placed on a separate chip with a bus interconnect with the CPU (level 2 cache)." ;
     rdfs:seeAlso "https://dbpedia.org/resource/CPU_cache" .
@@ -15763,8 +15750,7 @@ When system firmware verification fails a set of predefined responses is typical
 :TertiaryMemory a owl:Class ;
     rdfs:label "Tertiary Memory" ;
     rdfs:subClassOf :HardwareDevice,
-        :MemoryBlock,
-        :SecondaryMemory ;
+        :Memory ;
     rdfs:isDefinedBy "https://en.wikipedia.org/wiki/Computer_data_storage#Tertiary_storage" ;
     :definition "Tertiary storage or tertiary memory is memory primarily used for archiving rarely accessed information. It is primarily useful for extraordinarily large data stores. Typical examples include tape libraries and optical jukeboxes." .
 
@@ -16238,7 +16224,10 @@ Geolocation data for each user logon attempt is collected and used to create a b
 
 :VirtualAddress a owl:Class ;
     rdfs:label "Virtual Address" ;
-    rdfs:subClassOf :VirtualAddressSpace ;
+    rdfs:subClassOf :MemoryAddress,
+        [ a owl:Restriction ;
+            owl:onProperty :contained-by ;
+            owl:someValuesFrom :VirtualAddressSpace ] ;
     rdfs:isDefinedBy "https://www.techopedia.com/definition/9934/virtual-address-va" ;
     :definition "A virtual address in memory is a pointer or marker for a memory space that an operating system allows a process to use. The virtual address points to a location in primary storage that a process can use independently of other processes." ;
     rdfs:seeAlso "https://dbpedia.org/page/Virtual_address_space",
@@ -16247,7 +16236,10 @@ Geolocation data for each user logon attempt is collected and used to create a b
 
 :VirtualAddressSpace a owl:Class ;
     rdfs:label "Virtual Address Space" ;
-    rdfs:subClassOf :MemoryAddress ;
+    rdfs:subClassOf :MemoryAddressSpace,
+        [ a owl:Restriction ;
+            owl:onProperty :contains ;
+            owl:someValuesFrom :VirtualAddress ] ;
     rdfs:isDefinedBy "https://dbpedia.org/page/Virtual_address_space" ;
     :definition "In computing, a virtual address space (VAS) or address space is the set of ranges of virtual addresses that an operating system makes available to a process." .
 
@@ -16256,13 +16248,6 @@ Geolocation data for each user logon attempt is collected and used to create a b
     rdfs:subClassOf :ServiceApplication ;
     rdfs:isDefinedBy <http://dbpedia.org/resource/Category:Virtualization_software> ;
     :definition "Virtualization software allows a single host computer to create and run one or more virtual environments. Virtualization software is most often used to emulate a complete computer system in order to allow a guest operating system to be run, for example allowing Linux to run as a guest on top of a PC that is natively running a Microsoft Windows operating system (or the inverse, running Windows as a guest on Linux)." .
-
-:VirtualMemorySpace a owl:Class ;
-    rdfs:label "Virtual Memory Space" ;
-    rdfs:subClassOf :MemoryAddressSpace ;
-    rdfs:isDefinedBy "https://whatis.techtarget.com/definition/memory" ;
-    :definition "Virtual memory is a memory management technique where secondary memory can be used as if it were a part of the main memory. Virtual memory uses hardware and software to enable a computer to compensate for physical memory shortages" ;
-    rdfs:seeAlso "https://dbpedia.org/page/Virtual_memory" .
 
 :Volume a owl:Class ;
     rdfs:label "Volume" ;
